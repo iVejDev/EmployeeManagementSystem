@@ -1,0 +1,18 @@
+﻿@model string
+
+<form asp-controller="Theme" asp-action="Toggle" method="post" class="theme-switcher" id="themeForm">
+    <input type="hidden" name="returnUrl" value="@Context.Request.Path" />
+
+    <button type="button" class="btn theme-toggle" id="themeToggle">
+        @if (Model == "light")
+        {
+            <i class="fas fa-moon mr-2"></i>
+            <span class="theme-toggle-text"><strong>Mörkt tema</strong></span>
+        }
+        else
+        {
+            <i class="fas fa-sun mr-2"></i>
+            <span class="theme-toggle-text"><strong>Ljust tema</strong></span>
+        }
+    </button>
+</form>

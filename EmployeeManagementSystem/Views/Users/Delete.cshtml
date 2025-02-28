@@ -1,0 +1,43 @@
+﻿@model Microsoft.AspNetCore.Identity.IdentityUser
+
+@{
+    ViewData["Title"] = "Ta bort användare";
+}
+
+<div class="container mt-4">
+    <div class="card shadow border-danger">
+        <div class="card-header bg-danger text-white">
+            <h2 class="mb-0"><i class="fa fa-exclamation-triangle"></i> Bekräfta borttagning</h2>
+        </div>
+
+        <div class="card-body">
+            <div class="alert alert-warning">
+                <h4>Är du säker på att du vill ta bort denna användare?</h4>
+                <p>Denna åtgärd kan inte ångras.</p>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <dl class="row">
+                        <dt class="col-sm-3">E-postadress</dt>
+                        <dd class="col-sm-9">@Model.Email</dd>
+
+                        <dt class="col-sm-3">Användarnamn</dt>
+                        <dd class="col-sm-9">@Model.UserName</dd>
+                    </dl>
+                </div>
+            </div>
+
+            <form asp-action="Delete" class="mt-4 text-center">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <button type="submit" class="btn btn-danger btn-lg">
+                    <i class="fa fa-trash"></i> Ta bort permanent
+                </button>
+                <a asp-action="Index" class="btn btn-secondary btn-lg ml-2">
+                    <i class="fa fa-times"></i> Avbryt
+                </a>
+            </form>
+        </div>
+    </div>
+</div>

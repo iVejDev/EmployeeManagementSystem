@@ -1,0 +1,104 @@
+﻿@{
+    ViewData["Title"] = "Hem";
+}
+
+<div class="container mt-4">
+    <div class="jumbotron bg-dark text-white animate__animated animate__fadeIn">
+        <div class="container">
+            <h1 class="display-3 shimmer">
+                <i class="fas fa-users text-success mr-3"></i>Anställningssystem
+            </h1>
+            <p class="lead">Ett modernt system för att hantera företagets anställda med enkla och kraftfulla verktyg.</p>
+            <hr class="my-4 bg-success">
+            <p>Logga in för att få tillgång till alla funktioner.</p>
+            <a asp-controller="Employees" asp-action="Index" class="btn btn-success btn-lg pulse-animation">
+                <i class="fas fa-user-tie mr-2"></i>Hantera anställda
+            </a>
+        </div>
+    </div>
+
+    <div class="row animate__animated animate__fadeInUp">
+        <div class="col-md-4 mb-4">
+            <div class="card hover-effect">
+                <div class="card-header bg-dark text-white">
+                    <h4 class="mb-0"><i class="fas fa-id-card text-success mr-2"></i>Anställdinformation</h4>
+                </div>
+                <div class="card-body">
+                    <p>Lagra detaljerad information om alla anställda, inklusive personuppgifter, kontaktuppgifter och anställningsdetaljer.</p>
+                    <ul>
+                        <li>Personlig profilinformation</li>
+                        <li>Anställningsvillkor</li>
+                        <li>Kontaktuppgifter</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card hover-effect">
+                <div class="card-header bg-dark text-white">
+                    <h4 class="mb-0"><i class="fas fa-chart-pie text-success mr-2"></i>Statistik</h4>
+                </div>
+                <div class="card-body">
+                    <p>Få snabb översikt över personalstyrkan med användbar statistik och rapporter.</p>
+                    <ul>
+                        <li>Anställningstyper</li>
+                        <li>Avdelningsfördelning</li>
+                        <li>Statusöversikt</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card hover-effect">
+                <div class="card-header bg-dark text-white">
+                    <h4 class="mb-0"><i class="fas fa-shield-alt text-success mr-2"></i>Säkerhet</h4>
+                </div>
+                <div class="card-body">
+                    <p>Administratörsstyrd åtkomst med säker inloggning och rollbaserad behörighet.</p>
+                    <ul>
+                        <li>Säker autentisering</li>
+                        <li>Administratörsrättigheter</li>
+                        <li>Dataskydd</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4 animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">
+        <div class="col-md-12">
+            <div class="card bg-dark text-white">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h3 class="text-success">Kom igång direkt!</h3>
+                            <p class="lead">Börja hantera dina anställda på ett enkelt och modernt sätt.</p>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <a asp-controller="Employees" asp-action="Create" class="btn btn-success btn-lg">
+                                <i class="fas fa-plus-circle mr-2"></i>Lägg till anställd
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Lägg till animation på korten när sidan laddas
+        $(document).ready(function() {
+            setTimeout(function() {
+                $('.hover-effect').addClass('animate__animated animate__bounce');
+
+                setTimeout(function() {
+                    $('.hover-effect').removeClass('animate__animated animate__bounce');
+                }, 1000);
+            }, 1500);
+        });
+    </script>
+}

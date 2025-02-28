@@ -1,0 +1,143 @@
+﻿@model IEnumerable<EmployeeManagementSystem.Models.Employee>
+
+@{
+    ViewData["Title"] = "Anställda";
+}
+
+<div class="container mt-4">
+    <h1 class="display-4 mb-4">Anställda</h1>
+
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <a asp-action="Create" class="btn btn-success">
+                <i class="fa fa-plus"></i> Lägg till ny anställd
+            </a>
+        </div>
+        <div class="col-md-6">
+            <form asp-action="Index" method="get" class="form-inline float-right">
+                <div class="input-group">
+                    <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" class="form-control" placeholder="Sök..." />
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-search"></i> Sök
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="bg-dark text-white">
+                        <tr>
+                            <th>Bild</th>
+                            <th>
+                                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParam"]">
+                                    @Html.DisplayNameFor(model => model.FullName)
+                                </a>
+                            </th>
+                            <th>
+                                <a asp-action="Index" asp-route-sortOrder="@ViewData["DepartmentSortParam"]">
+                                    @Html.DisplayNameFor(model => model.Department)
+                                </a>
+                            </th>
+                            <th>@Html.DisplayNameFor(model => model.Position)</th>
+                            <th>@Html.DisplayNameFor(model => model.Email)</th>
+                            <th>@Html.DisplayNameFor(model => model.Status)</th>
+                            <th>Åtgärder</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="employee-row">
+                                <td class="align-middle">
+                                    @if (!string.IsNullOrEmpty(item.ImagePath))
+                                    {
+                                        <img src="@item.ImagePath" class="rounded-circle" width="50" height="50" />
+                                    }
+                                    else
+                                    {
+                                        <img src="/images/default-avatar.png" class="rounded-circle" width="50" height="50" />
+                                    }
+                                </td>
+                                <td class="align-middle">@item.FullName</td>
+                                <td class="align-middle">@item.Department</td>
+                                <td class="align-middle">@item.Position</td>
+                                <td class="align-middle">@item.Email</td>
+                                <td class="align-middle">
+                                    @{
+                                        string statusClass = "badge badge-success";
+
+                                        if (item.Status == "Sjukskriven")
+                                        {
+                                            statusClass = "badge badge-danger";
+                                        }
+                                        else if (item.Status == "Föräldraledig" || item.Status == "Semester")
+                                        {
+                                            statusClass = "badge badge-warning";
+                                        }
+                                    }
+                                    <span class="@statusClass">@item.Status</span>
+                                </td>
+                                <td class="align-middle">
+                                    <div class="btn-group" role="group">
+                                        <a asp-action="Edit" asp-route-id="@item.EmployeeId" class="btn btn-sm btn-primary">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <a asp-action="Details" asp-route-id="@item.EmployeeId" class="btn btn-sm btn-info">
+                                            <i class="fa fa-info-circle"></i>
+                                        </a>
+                                        <a asp-action="Delete" asp-route-id="@item.EmployeeId" class="btn btn-sm btn-danger">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .employee-row {
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+            .employee-row:hover {
+                background-color: rgba(0, 128, 0, 0.1);
+            }
+
+        .table thead th {
+            background-color: #212529;
+            color: white;
+        }
+
+        .btn-group .btn {
+            margin-right: 5px;
+        }
+    </style>
+}
+
+@section Scripts {
+    <script>
+        // Gör rader klickbara för att visa detaljer
+        $(document).ready(function() {
+            $(".employee-row").click(function(e) {
+                // Se till att klick på åtgärdsknappar inte utlöser rad-klick
+                if (!$(e.target).closest('.btn-group').length) {
+                    var id = $(this).find('.btn-info').attr('href').split('/').pop();
+                    window.location.href = '/Employees/Details/' + id;
+                }
+            });
+        });
+    </script>
+}

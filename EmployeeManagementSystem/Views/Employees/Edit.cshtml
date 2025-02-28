@@ -1,0 +1,218 @@
+﻿@model EmployeeManagementSystem.Models.Employee
+
+@{
+    ViewData["Title"] = "Redigera anställd";
+}
+
+<div class="container mt-4">
+    <h1 class="display-4 mb-4">Redigera anställd</h1>
+
+    <div class="card shadow">
+        <div class="card-body">
+            <form asp-action="Edit" asp-controller="Employees" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="EmployeeId" />
+                <input type="hidden" asp-for="ImagePath" />
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4 class="text-success mb-3">Personuppgifter</h4>
+
+                        <div class="form-group">
+                            <label asp-for="EmployeeId" class="control-label"></label>
+                            <input asp-for="EmployeeId" class="form-control" readonly />
+                            <span asp-validation-for="EmployeeId" class="text-danger"></span>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="FirstName" class="control-label"></label>
+                                    <input asp-for="FirstName" class="form-control" />
+                                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="LastName" class="control-label"></label>
+                                    <input asp-for="LastName" class="form-control" />
+                                    <span asp-validation-for="LastName" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Gender" class="control-label"></label>
+                            <select asp-for="Gender" class="form-control" asp-items="ViewBag.Genders"></select>
+                            <span asp-validation-for="Gender" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="DateOfBirth" class="control-label"></label>
+                            <input asp-for="DateOfBirth" class="form-control" />
+                            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Address" class="control-label"></label>
+                            <input asp-for="Address" class="form-control" />
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="MobilePhone" class="control-label"></label>
+                                    <input asp-for="MobilePhone" class="form-control" />
+                                    <span asp-validation-for="MobilePhone" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="WorkPhone" class="control-label"></label>
+                                    <input asp-for="WorkPhone" class="form-control" />
+                                    <span asp-validation-for="WorkPhone" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Email" class="control-label"></label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="ImageFile" class="control-label"></label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input asp-for="ImageFile" class="custom-file-input" id="customFile" />
+                                    <label class="custom-file-label" for="customFile">Välj ny bild</label>
+                                </div>
+                            </div>
+                            <span asp-validation-for="ImageFile" class="text-danger"></span>
+
+                            @if (!string.IsNullOrEmpty(Model.ImagePath))
+                            {
+                                <div class="mt-2">
+                                    <img src="@Model.ImagePath" class="img-thumbnail" style="max-height: 100px" />
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <h4 class="text-success mb-3">Anställningsinformation</h4>
+
+                        <div class="form-group">
+                            <label asp-for="EmploymentType" class="control-label"></label>
+                            <select asp-for="EmploymentType" class="form-control" asp-items="ViewBag.EmploymentTypes"></select>
+                            <span asp-validation-for="EmploymentType" class="text-danger"></span>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Department" class="control-label"></label>
+                                    <select asp-for="Department" class="form-control" asp-items="ViewBag.Departments"></select>
+                                    <span asp-validation-for="Department" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Position" class="control-label"></label>
+                                    <input asp-for="Position" class="form-control" />
+                                    <span asp-validation-for="Position" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="StartDate" class="control-label"></label>
+                                    <input asp-for="StartDate" class="form-control" />
+                                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="EndDate" class="control-label"></label>
+                                    <input asp-for="EndDate" class="form-control" />
+                                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="WorkingHours" class="control-label"></label>
+                            <input asp-for="WorkingHours" class="form-control" placeholder="T.ex. Mån-Fre 8-17" />
+                            <span asp-validation-for="WorkingHours" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="EmploymentRate" class="control-label"></label>
+                            <div class="input-group">
+                                <input asp-for="EmploymentRate" class="form-control" />
+                                <div class="input-group-append">
+                                    <span class="input-group-text">%</span>
+                                </div>
+                            </div>
+                            <span asp-validation-for="EmploymentRate" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Status" class="control-label"></label>
+                            <select asp-for="Status" class="form-control" asp-items="ViewBag.Statuses"></select>
+                            <span asp-validation-for="Status" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Notes" class="control-label"></label>
+                            <textarea asp-for="Notes" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="Notes" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group text-center mt-4">
+                    <button type="submit" class="btn btn-success btn-lg">
+                        <i class="fa fa-save"></i> Spara
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary btn-lg ml-2">
+                        <i class="fa fa-arrow-left"></i> Tillbaka
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        // Uppdatera filnamnet när en fil väljs
+        $(".custom-file-input").on("change", function() {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+
+        // Inaktivera slutdatum om tillsvidareanställning är vald
+        $(document).ready(function() {
+            $("#EmploymentType").change(function() {
+                if ($(this).val() === "Heltid" || $(this).val() === "Deltid") {
+                    $("#EndDate").prop("disabled", true);
+                    $("#EndDate").val("");
+                } else {
+                    $("#EndDate").prop("disabled", false);
+                }
+            });
+
+            // Kör funktionen vid laddning
+            $("#EmploymentType").trigger("change");
+        });
+    </script>
+}

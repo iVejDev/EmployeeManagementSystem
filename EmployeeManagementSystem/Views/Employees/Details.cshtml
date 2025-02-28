@@ -1,0 +1,207 @@
+﻿@model EmployeeManagementSystem.Models.Employee
+
+@{
+    ViewData["Title"] = "Anställdprofil";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow">
+                <div class="card-header bg-dark text-white">
+                    <h2 class="mb-0">@Model.FullName</h2>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3 text-center">
+                            @if (!string.IsNullOrEmpty(Model.ImagePath))
+                            {
+                                <img src="@Model.ImagePath" class="img-fluid rounded-circle mb-3" alt="@Model.FullName" style="max-width: 200px; max-height: 200px; border: 3px solid #28a745;" />
+                            }
+                            else
+                            {
+                                <img src="/images/default-avatar.png" class="img-fluid rounded-circle mb-3" alt="Default" style="max-width: 200px; max-height: 200px; border: 3px solid #28a745;" />
+                            }
+
+                            <div class="employee-actions mb-3">
+                                <a asp-action="Edit" asp-route-id="@Model.EmployeeId" class="btn btn-primary">
+                                    <i class="fa fa-edit"></i> Redigera
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@Model.EmployeeId" class="btn btn-danger">
+                                    <i class="fa fa-trash"></i> Ta bort
+                                </a>
+                            </div>
+
+                            <div class="status-badge mb-3">
+                                @{
+                                    string statusClass = "bg-success";
+
+                                    if (Model.Status == "Sjukskriven")
+                                    {
+                                        statusClass = "bg-danger";
+                                    }
+                                    else if (Model.Status == "Föräldraledig" || Model.Status == "Semester")
+                                    {
+                                        statusClass = "bg-warning";
+                                    }
+                                }
+                                <div class="badge @statusClass text-white p-2 w-100">@Model.Status</div>
+                            </div>
+
+                            <div class="card bg-light mb-3">
+                                <div class="card-header">
+                                    <strong>Position</strong>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">@Model.Position</p>
+                                    <p class="card-text">@Model.Department</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-9">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="info-section">
+                                        <h4 class="text-success mb-3">
+                                            <i class="fa fa-user"></i> Personuppgifter
+                                        </h4>
+
+                                        <dl class="row">
+                                            <dt class="col-sm-5">@Html.DisplayNameFor(model => model.EmployeeId)</dt>
+                                            <dd class="col-sm-7">@Model.EmployeeId</dd>
+
+                                            <dt class="col-sm-5">@Html.DisplayNameFor(model => model.Gender)</dt>
+                                            <dd class="col-sm-7">@Model.Gender</dd>
+
+                                            <dt class="col-sm-5">@Html.DisplayNameFor(model => model.DateOfBirth)</dt>
+                                            <dd class="col-sm-7">@Model.DateOfBirth.ToShortDateString()</dd>
+
+                                            <dt class="col-sm-5">@Html.DisplayNameFor(model => model.Age)</dt>
+                                            <dd class="col-sm-7">@Model.Age år</dd>
+
+                                            <dt class="col-sm-5">@Html.DisplayNameFor(model => model.Address)</dt>
+                                            <dd class="col-sm-7">@Model.Address</dd>
+                                        </dl>
+                                    </div>
+
+                                    <div class="info-section mt-4">
+                                        <h4 class="text-success mb-3">
+                                            <i class="fa fa-phone"></i> Kontaktuppgifter
+                                        </h4>
+
+                                        <dl class="row">
+                                            <dt class="col-sm-5">@Html.DisplayNameFor(model => model.Email)</dt>
+                                            <dd class="col-sm-7">
+                                                <a href="mailto:@Model.Email">@Model.Email</a>
+                                            </dd>
+
+                                            <dt class="col-sm-5">@Html.DisplayNameFor(model => model.MobilePhone)</dt>
+                                            <dd class="col-sm-7">
+                                                <a href="tel:@Model.MobilePhone">@Model.MobilePhone</a>
+                                            </dd>
+
+                                            @if (!string.IsNullOrEmpty(Model.WorkPhone))
+                                            {
+                                                <dt class="col-sm-5">@Html.DisplayNameFor(model => model.WorkPhone)</dt>
+                                                <dd class="col-sm-7">
+                                                    <a href="tel:@Model.WorkPhone">@Model.WorkPhone</a>
+                                                </dd>
+                                            }
+                                        </dl>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="info-section">
+                                        <h4 class="text-success mb-3">
+                                            <i class="fa fa-briefcase"></i> Anställningsinformation
+                                        </h4>
+
+                                        <dl class="row">
+                                            <dt class="col-sm-5">@Html.DisplayNameFor(model => model.EmploymentType)</dt>
+                                            <dd class="col-sm-7">@Model.EmploymentType</dd>
+
+                                            <dt class="col-sm-5">@Html.DisplayNameFor(model => model.StartDate)</dt>
+                                            <dd class="col-sm-7">@Model.StartDate.ToShortDateString()</dd>
+
+                                            @if (Model.EndDate.HasValue)
+                                            {
+                                                <dt class="col-sm-5">@Html.DisplayNameFor(model => model.EndDate)</dt>
+                                                <dd class="col-sm-7">@Model.EndDate.Value.ToShortDateString()</dd>
+                                            }
+
+                                            <dt class="col-sm-5">@Html.DisplayNameFor(model => model.EmploymentRate)</dt>
+                                            <dd class="col-sm-7">@Model.EmploymentRate%</dd>
+
+                                            <dt class="col-sm-5">@Html.DisplayNameFor(model => model.WorkingHours)</dt>
+                                            <dd class="col-sm-7">@Model.WorkingHours</dd>
+                                        </dl>
+                                    </div>
+
+                                    @if (!string.IsNullOrEmpty(Model.Notes))
+                                    {
+                                        <div class="info-section mt-4">
+                                            <h4 class="text-success mb-3">
+                                                <i class="fa fa-sticky-note"></i> Noteringar
+                                            </h4>
+
+                                            <div class="card">
+                                                <div class="card-body bg-light">
+                                                    @Model.Notes
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="fa fa-arrow-left"></i> Tillbaka till listan
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .info-section {
+            margin-bottom: 20px;
+        }
+
+            .info-section h4 {
+                border-bottom: 1px solid #28a745;
+                padding-bottom: 8px;
+            }
+
+        dl dt {
+            font-weight: 600;
+            /* Öka bredden på definition term för att undvika brytning */
+            word-wrap: break-word;
+        }
+
+        dl dd {
+            word-wrap: break-word;
+        }
+
+        .employee-actions {
+            margin-top: 15px;
+        }
+
+        .card-header {
+            font-weight: 600;
+        }
+
+        /* Förhindra att titlar bryts */
+        dt {
+            white-space: normal;
+        }
+    </style>
+}

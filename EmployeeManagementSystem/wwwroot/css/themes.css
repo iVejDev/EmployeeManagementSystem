@@ -1,0 +1,188 @@
+﻿/* Ljust tema (default) */
+:root {
+    --primary: #28a745;
+    --primary-dark: #218838;
+    --primary-light: #86e29b;
+    --dark: #212529;
+    --dark-light: #343a40;
+    --light: #f8f9fa;
+    --gray: #6c757d;
+    --gray-light: #f8f9fa;
+    --gray-dark: #343a40;
+    --body-bg: #f5f5f5;
+    --body-color: #212529;
+    --card-bg: #ffffff;
+    --card-border: rgba(0, 0, 0, 0.125);
+    --input-bg: #ffffff;
+    --input-color: #495057;
+    --input-border: #ced4da;
+    --table-border: #dee2e6;
+    --table-hover-bg: rgba(0, 0, 0, 0.075);
+    --modal-bg: #ffffff;
+    --dropdown-bg: #ffffff;
+    --dropdown-link-hover-bg: #f8f9fa;
+}
+
+/* Mörkt tema */
+[data-theme="dark"] {
+    --primary: #28a745;
+    --primary-dark: #218838;
+    --primary-light: #86e29b;
+    --dark: #121212;
+    --dark-light: #1e1e1e;
+    --light: #2d2d2d;
+    --gray: #adb5bd;
+    --gray-light: #343a40;
+    --gray-dark: #e9ecef;
+    --body-bg: #121212;
+    --body-color: #e9ecef; /* Ljusare text i mörkt läge */
+    --card-bg: #1e1e1e;
+    --card-border: rgba(255, 255, 255, 0.125);
+    --input-bg: #2d2d2d;
+    --input-color: #e9ecef;
+    --input-border: #444;
+    --table-border: #343a40;
+    --table-hover-bg: rgba(255, 255, 255, 0.1); /* Ljusare hover i mörkt tema */
+    --modal-bg: #1e1e1e;
+    --dropdown-bg: #1e1e1e;
+    --dropdown-link-hover-bg: #343a40;
+}
+
+/* Gemensamma stilar för båda teman */
+body {
+    background-color: var(--body-bg);
+    color: var(--body-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-color: var(--card-border);
+}
+
+.table {
+    color: var(--body-color);
+}
+
+    .table td, .table th {
+        border-top-color: var(--table-border);
+    }
+
+    .table thead th {
+        border-bottom-color: var(--table-border);
+    }
+
+.table-hover tbody tr:hover {
+    background-color: var(--table-hover-bg);
+}
+
+.form-control {
+    background-color: var(--input-bg);
+    color: var(--input-color);
+    border-color: var(--input-border);
+}
+
+    .form-control:focus {
+        background-color: var(--input-bg);
+        color: var(--input-color);
+    }
+
+.modal-content {
+    background-color: var(--modal-bg);
+}
+
+.dropdown-menu {
+    background-color: var(--dropdown-bg);
+}
+
+.dropdown-item {
+    color: var(--body-color);
+}
+
+    .dropdown-item:hover, .dropdown-item:focus {
+        background-color: var(--dropdown-link-hover-bg);
+    }
+
+.bg-light {
+    background-color: var(--light) !important;
+}
+
+.bg-dark {
+    background-color: var(--dark) !important;
+}
+
+.text-dark {
+    color: var(--dark) !important;
+}
+
+.text-light {
+    color: var(--light) !important;
+}
+
+/* Tema-växlarknappen (samma utseende i båda teman) */
+.theme-toggle {
+    color: var(--dark); /* Mörk text */
+    background-color: transparent;
+    border: 1px solid var(--primary);
+    border-radius: 20px;
+    padding: 5px 15px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+    .theme-toggle:hover {
+        background-color: var(--primary);
+        color: white !important; /* Vit text vid hover */
+    }
+
+/* Förbättra hover-effekt för personal-element */
+.personal-item:hover {
+    background-color: var(--primary); /* Grön bakgrund vid hover */
+    color: white !important; /* Vit text vid hover */
+}
+
+[data-theme="dark"] .personal-item:hover {
+    background-color: var(--primary); /* Samma gröna färg i mörkt läge */
+    color: white !important; /* Vit text vid hover */
+}
+
+/* Förbättra användarnamn i navigationsfältet */
+.navbar .text-light,
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.9) !important; /* Mer synlig text i mörkt navigationsfält */
+}
+
+/* Förbättra dropdown-meny för användarinfo */
+.dropdown-menu {
+    background-color: var(--dropdown-bg);
+    border-color: var(--input-border);
+}
+
+.dropdown-item {
+    color: var(--body-color);
+}
+
+    .dropdown-item:hover {
+        background-color: var(--primary);
+        color: white;
+    }
+
+/* Allmänna förbättringar för länkar */
+a {
+    color: var(--primary);
+    transition: color 0.2s;
+}
+
+    a:hover {
+        color: var(--primary-dark);
+        text-decoration: none;
+    }
+
+[data-theme="dark"] a {
+    color: var(--primary-light);
+}
+
+    [data-theme="dark"] a:hover {
+        color: var(--primary);
+    }

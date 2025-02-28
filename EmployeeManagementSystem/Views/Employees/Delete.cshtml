@@ -1,0 +1,83 @@
+﻿@model EmployeeManagementSystem.Models.Employee
+
+@{
+    ViewData["Title"] = "Ta bort anställd";
+}
+
+<div class="container mt-4">
+    <div class="card shadow border-danger">
+        <div class="card-header bg-danger text-white">
+            <h2 class="mb-0"><i class="fa fa-exclamation-triangle"></i> Bekräfta borttagning</h2>
+        </div>
+
+        <div class="card-body">
+            <div class="alert alert-warning">
+                <h4>Är du säker på att du vill ta bort denna anställd?</h4>
+                <p>Denna åtgärd kan inte ångras.</p>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-4 text-center">
+                    @if (!string.IsNullOrEmpty(Model.ImagePath))
+                    {
+                        <img src="@Model.ImagePath" class="img-fluid rounded-circle mb-3" style="max-width: 150px; border: 3px solid #dc3545;" />
+                    }
+                    else
+                    {
+                        <img src="/images/default-avatar.png" class="img-fluid rounded-circle mb-3" style="max-width: 150px; border: 3px solid #dc3545;" />
+                    }
+
+                    <h4>@Model.FullName</h4>
+                    <p class="text-muted">@Model.Position</p>
+                    <p class="text-muted">@Model.Department</p>
+                </div>
+
+                <div class="col-md-8">
+                    <dl class="row">
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.EmployeeId)</dt>
+                        <dd class="col-sm-8">@Model.EmployeeId</dd>
+
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Email)</dt>
+                        <dd class="col-sm-8">@Model.Email</dd>
+
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.MobilePhone)</dt>
+                        <dd class="col-sm-8">@Model.MobilePhone</dd>
+
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.EmploymentType)</dt>
+                        <dd class="col-sm-8">@Model.EmploymentType</dd>
+
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.StartDate)</dt>
+                        <dd class="col-sm-8">@Model.StartDate.ToShortDateString()</dd>
+
+                        <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Status)</dt>
+                        <dd class="col-sm-8">
+                            @{
+                                string statusClass = "badge badge-success";
+
+                                if (Model.Status == "Sjukskriven")
+                                {
+                                    statusClass = "badge badge-danger";
+                                }
+                                else if (Model.Status == "Föräldraledig" || Model.Status == "Semester")
+                                {
+                                    statusClass = "badge badge-warning";
+                                }
+                            }
+                            <span class="@statusClass">@Model.Status</span>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+            <form asp-action="Delete" class="mt-4 text-center">
+                <input type="hidden" asp-for="EmployeeId" />
+                <button type="submit" class="btn btn-danger btn-lg">
+                    <i class="fa fa-trash"></i> Ta bort permanent
+                </button>
+                <a asp-action="Index" class="btn btn-secondary btn-lg ml-2">
+                    <i class="fa fa-times"></i> Avbryt
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
