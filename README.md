@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
 [![EF Core](https://img.shields.io/badge/EF%20Core-9.0-purple?style=flat-square&logo=.net)](https://docs.microsoft.com/en-us/ef/core/)
 
-A modern employee management system built with ASP.NET Core MVC where companies can manage employee information in a simple and efficient way.
+A modern employee management system built with ASP.NET Core MVC where companies can manage employee information in a simple and efficient way
 
 
 
