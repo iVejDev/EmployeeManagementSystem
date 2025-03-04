@@ -1,155 +1,155 @@
-# 👥 Personalhanteringssystem (Employee Management System)
+# 👥 Employee Management System
 
 [![.NET Core](https://img.shields.io/badge/.NET%20Core-8.0-512BD4?style=flat-square&logo=dotnet)](https://dotnet.microsoft.com/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
 [![EF Core](https://img.shields.io/badge/EF%20Core-9.0-purple?style=flat-square&logo=.net)](https://docs.microsoft.com/en-us/ef/core/)
 
-Ett modernt personalhanteringssystem byggt med ASP.NET Core MVC där företag kan hantera anställdas information på ett enkelt och effektivt sätt.
+A modern employee management system built with ASP.NET Core MVC where companies can manage employee information in a simple and efficient way.
 
 
 
-## 📋 Funktioner
+## 📋 Features
 
-- **Användarhantering med rollbaserad behörighet**
-  - Inloggning för administratörer
-  - Administratörsroll med fullständig kontroll över systemet
+- **User management with role-based permissions**
+  - Login for administrators
+  - Administrator role with full control over the system
   
-- **Komplett hantering av anställdainformation**
-  - Lägg till, redigera, visa och ta bort anställda
-  - Lagra detaljerad information om varje anställd
-  - Profilbildshantering med uppladdning
+- **Complete employee information management**
+  - Add, edit, view, and delete employees
+  - Store detailed information about each employee
+  - Profile image management with upload functionality
   
-- **Sökfunktioner och filtrering**
-  - Sök efter anställda baserat på namn, avdelning eller position
-  - Sortera listan efter olika kriterier
+- **Search functions and filtering**
+  - Search for employees based on name, department, or position
+  - Sort the list by different criteria
   
-- **Responsiv design**
-  - Fungerar bra på både datorer, surfplattor och mobiler
+- **Responsive design**
+  - Works well on desktops, tablets, and mobile devices
   
-- **Mörkt/Ljust tema**
-  - Möjlighet att byta mellan mörkt och ljust tema
+- **Dark/Light theme**
+  - Option to switch between dark and light themes
 
-## 🚀 Teknologier
+## 🚀 Technologies
 
 - **Backend**
   - ASP.NET Core 8.0 MVC
   - Entity Framework Core 9.0
-  - Identity för autentisering och auktorisering
+  - Identity for authentication and authorization
   
 - **Frontend**
   - Bootstrap 4.6
   - jQuery
-  - Font Awesome ikoner
-  - Animate.css för animationer
+  - Font Awesome icons
+  - Animate.css for animations
   
-- **Databas**
+- **Database**
   - Microsoft SQL Server
   
-## 📦 Installation och körning
+## 📦 Installation and Setup
 
-### Förutsättningar
-- .NET SDK 8.0 eller senare
-- Visual Studio 2022 eller senare (rekommenderas)
-- SQL Server (LocalDB fungerar också)
+### Prerequisites
+- .NET SDK 8.0 or later
+- Visual Studio 2022 or later (recommended)
+- SQL Server (LocalDB works too)
 
-### Steg för att komma igång
+### Getting Started
 
-1. **Klona repot**
+1. **Clone the repository**
    ```
    git clone https://github.com/iVejDev/EmployeeManagementSystem.git
    cd EmployeeManagementSystem
    ```
 
-2. **Återställ NuGet-paket**
+2. **Restore NuGet packages**
    ```
    dotnet restore
    ```
 
-3. **Uppdatera databaskoppling**
+3. **Update database connection**
    
-   Redigera anslutningssträngen i `appsettings.json` om det behövs:
+   Edit the connection string in `appsettings.json` if needed:
    ```json
    "ConnectionStrings": {
      "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=EmployeeManagementSystem;Trusted_Connection=True;MultipleActiveResultSets=true"
    }
    ```
 
-4. **Kör databasmigrering**
+4. **Run database migration**
    ```
    dotnet ef database update
    ```
 
-5. **Starta applikationen**
+5. **Start the application**
    ```
    dotnet run
    ```
 
-6. **Standard inloggningsuppgifter**
-   - E-post: admin@example.com
-   - Lösenord: Admin123!
+6. **Default login credentials**
+   - Email: admin@example.com
+   - Password: Admin123!
 
-## 📐 Projektstruktur
+## 📐 Project Structure
 
 ```
 EmployeeManagementSystem/
 │
-├── Controllers/             # Innehåller alla MVC-controllers
-│   ├── EmployeesController.cs  # Hantering av anställda
-│   ├── HomeController.cs       # Startsida 
-│   ├── ThemeController.cs      # Temahantering
-│   └── UsersController.cs      # Användarhantering
+├── Controllers/             # Contains all MVC controllers
+│   ├── EmployeesController.cs  # Employee management
+│   ├── HomeController.cs       # Home page 
+│   ├── ThemeController.cs      # Theme management
+│   └── UsersController.cs      # User management
 │
-├── Data/                    # Databaskoppling och Entity Framework-konfiguration
-│   ├── ApplicationDbContext.cs # DbContext för applikationen
-│   └── Migrations/         # EF Core-migreringar 
+├── Data/                    # Database connection and Entity Framework configuration
+│   ├── ApplicationDbContext.cs # DbContext for the application
+│   └── Migrations/         # EF Core migrations 
 │
-├── Models/                  # Datamodeller
-│   ├── Employee.cs         # Anställd-modell
-│   └── ErrorViewModel.cs   # Modell för felhantering
+├── Models/                  # Data models
+│   ├── Employee.cs         # Employee model
+│   └── ErrorViewModel.cs   # Error handling model
 │
-├── Services/                # Tjänster för applikationen
-│   └── ThemeService.cs     # Hantering av mörkt/ljust tema
+├── Services/                # Services for the application
+│   └── ThemeService.cs     # Dark/light theme management
 │
-├── Views/                   # MVC-vyer
-│   ├── Employees/          # Vyer för anställda-hantering
-│   ├── Home/               # Startsida
-│   ├── Shared/             # Delade vyer
-│   └── Users/              # Användarhantering
+├── Views/                   # MVC views
+│   ├── Employees/          # Views for employee management
+│   ├── Home/               # Home page
+│   ├── Shared/             # Shared views
+│   └── Users/              # User management
 │
-└── wwwroot/                 # Statiska filer
-    ├── css/                # Stilmallar
-    ├── js/                 # JavaScript-filer
-    └── images/             # Bilder
+└── wwwroot/                 # Static files
+    ├── css/                # Stylesheets
+    ├── js/                 # JavaScript files
+    └── images/             # Images
 ```
 
-## 🔒 Säkerhetsfeatures
+## 🔒 Security Features
 
-- ASP.NET Core Identity för autentisering och auktorisering
-- Rollbaserad åtkomstkontroll (Admins kan hantera användare)
-- CSRF-skydd med antiforgery-tokens
-- Säker bilduppladdning med valideringar
-- XSS-skydd genom MVC:s automatiska HTML-encodning
+- ASP.NET Core Identity for authentication and authorization
+- Role-based access control (Admins can manage users)
+- CSRF protection with antiforgery tokens
+- Secure image upload with validations
+- XSS protection through MVC's automatic HTML encoding
 
-## 🛠️ Utvecklingsprocess
+## 🛠️ Development Process
 
-För att bidra till projektet:
+To contribute to the project:
 
-1. Skapa en ny branch för din feature: `git checkout -b min-nya-feature`
-2. Gör dina ändringar och commita: `git commit -m 'Lägg till ny feature'`
-3. Pusha till din branch: `git push origin min-nya-feature`
-4. Skapa en pull request
+1. Create a new branch for your feature: `git checkout -b my-new-feature`
+2. Make your changes and commit: `git commit -m 'Add new feature'`
+3. Push to your branch: `git push origin my-new-feature`
+4. Create a pull request
 
-## 📝 Licens
+## 📝 License
 
-Detta projekt är licensierat under [MIT-licensen](LICENSE).
+This project is licensed under the [MIT License](LICENSE).
 
-## 👏 Erkännanden
+## 👏 Acknowledgements
 
-- [Bootstrap](https://getbootstrap.com/) - Frontend-ramverk
-- [Font Awesome](https://fontawesome.com/) - Ikoner
-- [Animate.css](https://animate.style/) - CSS-animationer
+- [Bootstrap](https://getbootstrap.com/) - Frontend framework
+- [Font Awesome](https://fontawesome.com/) - Icons
+- [Animate.css](https://animate.style/) - CSS animations
 
 
 ---
 
-&copy; 2025 I.vej. Alla rättigheter förbehållna.
+&copy; 2025 I.vej. All rights reserved.
